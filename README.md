@@ -1,15 +1,63 @@
-# frontend-utils
+# EpsilonDelta frontend utils
 
-To install dependencies:
+## Install
 
-```bash
-bun install
+```
+npm install @epsilondelta-ai/frontend-utils
+yarn add @epsilondelta-ai/frontend-utils
+pnpm add @epsilondelta-ai/frontend-utils
+bun add @epsilondelta-ai/frontend-utils
 ```
 
-To run:
+## Usage
 
-```bash
-bun run index.ts
+### init
+
+```ts
+import { initClient } from '@epsilondelta-ai/frontend-utils'
+
+const firebaseOptions = {
+  apiKey: '...',
+  authDomain: '...',
+  databaseURL: '...',
+  projectId: '...',
+  storageBucket: '...',
+  messagingSenderId: '...',
+  appId: '...',
+  measurementId: '...',
+}
+initClient(firebaseOptions)
 ```
 
-This project was created using `bun init` in bun v1.2.4. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+### auth
+
+- signInWithGithub
+- signInWithGoogle
+- signInWithMicrosoft
+- signInWithApple
+- signInWithYahoo
+- signInWithGooglePlayGames
+- signInWithAppleGameCenter
+- signInWithFacebook
+- signInWithTwitter
+
+```ts
+import { signInWithGithub } from '@epsilondelta-ai/frontend-utils'
+
+async function handleClickGitHubLogin() {
+  let user: User;
+
+  try {
+    user = await signInWithGithub()
+  } catch(error) {
+    if (error.code === 'auth/popup-blocked') {
+      // "Please, allow pop-ups"
+      return
+    }
+  }
+
+  // store(user)
+}
+
+<button type="button" onClick={handleClickGitHubLogin}>Auth With GitHub</button>
+```
