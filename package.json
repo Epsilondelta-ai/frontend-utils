@@ -42,5 +42,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "firebase": "^12.3.0"
   }
 }
