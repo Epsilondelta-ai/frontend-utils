@@ -1,1 +1,3 @@
-console.log("Hello via Bun!");
+import { initClient } from "./src/client";
+
+export { initClient };
