@@ -61,3 +61,67 @@ async function handleClickGitHubLogin() {
 
 <button type="button" onClick={handleClickGitHubLogin}>Auth With GitHub</button>
 ```
+
+### store
+
+```ts
+import { where } from 'firebase/firestore'
+import {
+  createDocument,
+  createDocuments,
+  readDocuments,
+  readDocument,
+  updateDocument,
+  updateDocuments,
+  deleteDocument,
+  deleteDocuments,
+} from '@epsilondelta-ai/frontend-utils'
+
+interface AwesomeData {
+  some: string
+  awesome: number
+  records: boolean
+}
+
+const collectionName = 'awesome-collection-name'
+
+const createdData = await createDocument<AwesomeData>(collectionName, {
+  some: 'some',
+  awesome: 1,
+  records: true,
+})
+const createdDatas = await createDocument<AwesomeData>(collectionName, [
+  {
+    some: 'your',
+    awesome: 2,
+    records: true,
+  },
+  {
+    some: 'awesome',
+    awesome: 3,
+    records: true,
+  },
+  {
+    some: 'records',
+    awesome: 4,
+    records: true,
+  }
+])
+
+// @see https://firebase.google.com/docs/firestore/query-data/queries
+const documents = await readDocuments(collectionName, where('records', '==', true))
+const document = await readDocument(collecionName, createdData.id)
+
+await updateDocument(collectionName, document.id, {
+  some: 'awesome',
+  awesome: 2,
+  records: false,
+})
+await updateDocuments(collectionName, documents.map((data) => ({
+  ...data,
+  records: false,
+})))
+
+await deleteDocument(collectionName, document.id)
+await deleteDocuments(dollectionName, documents.map((data) => data.id))
+```

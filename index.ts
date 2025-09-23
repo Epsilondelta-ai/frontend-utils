@@ -10,6 +10,13 @@ import {
   signInWithFacebook,
   signInWithTwitter,
 } from "./src/auth";
+import {
+  createDocument,
+  readDocuments,
+  readDocument,
+  updateDocument,
+  deleteDocument,
+} from "./src/store";
 
 export {
   initClient,
@@ -22,4 +29,9 @@ export {
   signInWithAppleGameCenter,
   signInWithFacebook,
   signInWithTwitter,
+  createDocument,
+  readDocuments,
+  readDocument,
+  updateDocument,
+  deleteDocument,
 };
