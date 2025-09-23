@@ -11,10 +11,13 @@ import {
   signInWithTwitter,
 } from "./src/auth";
 import {
+  createDocuments,
   createDocument,
   readDocuments,
   readDocument,
+  updateDocuments,
   updateDocument,
+  deleteDocuments,
   deleteDocument,
 } from "./src/store";
 
@@ -29,9 +32,12 @@ export {
   signInWithAppleGameCenter,
   signInWithFacebook,
   signInWithTwitter,
+  createDocuments,
   createDocument,
   readDocuments,
   readDocument,
+  updateDocuments,
   updateDocument,
+  deleteDocuments,
   deleteDocument,
 };
