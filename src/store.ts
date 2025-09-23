@@ -8,6 +8,7 @@ import {
   getFirestore,
   query,
   QueryConstraint,
+  setDoc,
   updateDoc,
   writeBatch,
   type Firestore,
@@ -26,6 +27,17 @@ export async function createDocument<T extends AnyRecord>(
   collectionName: string,
   data: T
 ): Promise<Document<T>> {
+  if (data.id) {
+    const tmp = { ...data };
+    const id = data.id;
+
+    delete tmp.id;
+
+    await setDoc(doc(getStore(), collectionName, id), tmp);
+
+    return data as Document<T>;
+  }
+
   const ref = await addDoc(collection(getStore(), collectionName), data);
   return { id: ref.id, ...data };
 }
@@ -37,6 +49,16 @@ export async function createDocuments<T extends AnyRecord>(
   const batch = writeBatch(getStore());
 
   data.forEach((item) => {
+    if (item.id) {
+      const tmp = { ...item };
+      const id = item.id;
+
+      delete tmp.id;
+
+      batch.set(doc(getStore(), collectionName, id), tmp);
+      return;
+    }
+
     batch.set(doc(getStore(), collectionName), item);
   });
 
