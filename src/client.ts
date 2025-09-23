@@ -6,16 +6,16 @@ import {
   getApp,
 } from "firebase/app";
 
-let options: FirebaseOptions = {};
+let OPTIONS: FirebaseOptions = {};
 let cachedClient: FirebaseApp | null = null;
 
 export function initClient(options: FirebaseOptions) {
-  options = options;
+  OPTIONS = { ...options };
 }
 
 export function getFirebaseApp(): FirebaseApp {
   if (cachedClient) return cachedClient;
 
-  cachedClient = getApps().length ? getApp() : initializeApp(options);
+  cachedClient = getApps().length ? getApp() : initializeApp(OPTIONS);
   return cachedClient;
 }
