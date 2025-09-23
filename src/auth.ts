@@ -110,7 +110,7 @@ function signInWith(providerId: string): Promise<User> {
         throw error;
       }
 
-      return linkWith(PROVIDERS[providerId](), credential);
+      return linkWith(PROVIDERS[verifiedProviders[0]!](), credential);
     });
 }
 
