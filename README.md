@@ -109,8 +109,8 @@ const createdDatas = await createDocument<AwesomeData>(collectionName, [
 ])
 
 // @see https://firebase.google.com/docs/firestore/query-data/queries
-const documents = await readDocuments(collectionName, where('records', '==', true))
-const document = await readDocument(collecionName, createdData.id)
+const documents = await readDocuments<AwesomeData>(collectionName, where('records', '==', true))
+const document = await readDocument<AwesomeData>(collecionName, createdData.id)
 
 await updateDocument(collectionName, document.id, {
   some: 'awesome',
