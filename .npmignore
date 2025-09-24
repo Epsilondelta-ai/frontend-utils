@@ -1,7 +1,5 @@
 *
-!index.d.ts*
-!index.js*
-!index.mjs*
+!dist/*
 !package.json
 !README.md
 !LICENSE
